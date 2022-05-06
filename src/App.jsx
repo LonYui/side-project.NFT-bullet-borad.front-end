@@ -1,6 +1,3 @@
-/*
- * We are going to be using the useEffect hook!
- */
 import React, { useEffect, useState } from 'react';
 import instaLogo from './assets/instaLogo.png';
 import './App.css';
@@ -11,51 +8,32 @@ import { Buffer } from 'buffer';
 
 import kp from './keypair.json'
 window.Buffer = Buffer;
-// Change this up to be your insta if you want.
+
 const insta_HANDLE = 'florist.nft';
 const insta_LINK = `https://instagram.com/${insta_HANDLE}`;
 
-// SystemProgram is a reference to the Solana runtime!
 const {SystemProgram, Keypair} = web3;
 
-// Create a keypair for the account that will hold the GIF data.
-// let baseAccount = Keypair.generate()
 const arr = Object.values(kp._keypair.secretKey)
 const secrete = new Uint8Array(arr)
 const baseAccount = web3.Keypair.fromSecretKey(secrete)
 
-// Get our program's id from the IDL file.
 const programID = new PublicKey(idl.metadata.address)
 
-// Set our network to devnet.
 const network = clusterApiUrl('devnet')
 
-// Controls how we want to acknowledge when a transaction is "done".
 const opts = {
   preflightCommitment: "processed"
 }
 
 
 
-//test data
-const TEST_GIFS = [
-	'https://s3.us-east-2.amazonaws.com/asset.roarrr.io/0322_GP_1600X900_001.png',
-	'https://s3.us-east-2.amazonaws.com/asset.roarrr.io/0322_GP_1600X900_002.png',
-	'https://s3.us-east-2.amazonaws.com/asset.roarrr.io/0322_GP_1600X900_003.png',
-	'https://s3.us-east-2.amazonaws.com/asset.roarrr.io/0322_GP_1600X900_004.png'
-]
-
 const App = () => {
 
-  // State
   const [walletAddress, setWalletAddress] = useState(null);
   const [inputValue, setInputValue] = useState('');
   const [gifList, setGifList] = useState([]);
 
-  /*
-   * This function holds the logic for deciding if a Phantom Wallet is
-   * connected or not
-   */
   const checkIfWalletIsConnected = async () => {
     try {
       const { solana } = window;
@@ -223,10 +201,6 @@ const App = () => {
     }
   }
 
-    /*
-   * When our component first mounts, let's check to see if we have a connected
-   * Phantom Wallet
-   */
   useEffect(() => {
     const onLoad = async () => {
       await checkIfWalletIsConnected();
@@ -245,16 +219,13 @@ const App = () => {
 
   return (
     <div className="App">
-      {/* This was solely added for some styling fanciness */}
       <div className={walletAddress ? 'authed-container' : 'container'}>
         <div className="header-container">
           <p className="header">Gallery</p>
           <p className="sub-text">
             of 賣花少年｜Young Male Florist
           </p>
-          {/* Add the condition to show this only if we don't have a wallet address */}
           {!walletAddress && renderNotConnectedContainer()}
-          {/* We just need to add the inverse here! */}
           {walletAddress && renderConnectedContainer()}
         </div>
         <div className="footer-container">
