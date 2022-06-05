@@ -177,11 +177,14 @@ const App = () => {
         {/* Map through gifList instead of TEST_GIFS */}
         {gifList.map((gif) => (
           <div className="gif-item" key={gif}>
-            <img src={gif.gifLink} alt={gif} />{gif.userAddress.toString()}
+            <img src={gif.gifLink} alt={gif} />
+              <div class="middle"><div class="text">{gif.userAddress.toString()}</div></div>
             <button onClick={(event) => {
         event.preventDefault();
-        upvoteGif(gif.gifLink,gif.userAddress)}}>upvote .current count: {gif.voteCount}</button>
+        upvoteGif(gif.gifLink,gif.userAddress)}}>{gif.voteCount}❤️‍🩹</button>
           </div>
+          
+
         ))}
     </div>
   </div>
