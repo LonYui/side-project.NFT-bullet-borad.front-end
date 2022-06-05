@@ -76,6 +76,28 @@
   padding-bottom: 45px;
 }
 
+.button-1 {
+  background: -webkit-linear-gradient(left, #4e44ce, #35aee2);
+  background-size: 200% 200%;
+  animation: gradient-animation 4s ease infinite;
+/*   margin: auto; */
+  width:25%;
+  position: absolute;
+  top: 10%;
+  right: 10%;
+}
+
+.button-2 {
+  background: -webkit-linear-gradient(left, #4e44ce, #35aee2);
+  background-size: 200% 200%;
+  animation: gradient-animation 4s ease infinite;
+/*   margin: auto; */
+  width:25%;
+  position: absolute;
+  top: 40%;
+  right: 10%;
+}
+
 .twitter-logo {
   width: 35px;
   height: 35px;
@@ -109,13 +131,7 @@
   height: 50%;
   border-radius: 10px;
   object-fit: cover;
-  margin: auto;
-}
-
-.gif-item button {  
-  width:20%;
-  margin: auto;
-  opacity:70%;
+/*   margin: auto; */
 }
 
 .connected-container input[type='text'] {
