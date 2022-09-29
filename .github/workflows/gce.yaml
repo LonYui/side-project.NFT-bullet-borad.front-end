@@ -22,7 +22,7 @@ on:
 env:
   PROJECT_ID: ${{ secrets.GCE_PROJECT }}
   GCE_INSTANCE: nft-bullet-board  # TODO: update to instance name
-  GCE_INSTANCE_ZONE: us-central1-a   # TODO: update to instance zone
+  GCE_INSTANCE_ZONE: asia-east1-a   # TODO: update to instance zone
 
 jobs:
   setup-build-publish-deploy:
