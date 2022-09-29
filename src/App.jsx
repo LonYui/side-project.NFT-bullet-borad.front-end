@@ -9,7 +9,7 @@ import { Buffer } from 'buffer';
 import kp from './keypair.json'
 window.Buffer = Buffer;
 
-const insta_HANDLE = 'florist.nft';
+const insta_HANDLE = '0xflower.nft';
 const insta_LINK = `https://instagram.com/${insta_HANDLE}`;
 
 const {SystemProgram, Keypair} = web3;
@@ -160,7 +160,8 @@ const App = () => {
           Do One-Time Initialization For GIF Program Account
         </button>
       </div>)
-  }else {
+  }else {    
+    const token_id_getter_re = /https:\/\/storage\.googleapis\.com\/baseurls\/florist\/reveal\/(\d+)\.png/gm
     return (
   <div className="connected-container">
     <form
@@ -177,11 +178,19 @@ const App = () => {
         {/* Map through gifList instead of TEST_GIFS */}
         {gifList.map((gif) => (
           <div className="gif-item" key={gif}>
-            <img src={gif.gifLink} alt={gif} />{gif.userAddress.toString()}
-            <button onClick={(event) => {
+            <img src={gif.gifLink} alt={gif} />
+            <div class="middle">{'poster:'+gif.userAddress.toString().substr(0,3)+'...'+gif.userAddress.toString().substr(-3)}</div>
+            <button className="cta-button button-1" onClick={(event) => {
         event.preventDefault();
-        upvoteGif(gif.gifLink,gif.userAddress)}}>upvote .current count: {gif.voteCount}</button>
+        upvoteGif(gif.gifLink,gif.userAddress)}}>{gif.voteCount}❤️‍🩹</button>
+            <button className="cta-button button-2" onClick={(event) => {
+        event.preventDefault();
+            window.open('https://opensea.io/assets/ethereum/0x31fd4c9f7c47461a2f300a88319f74024a013e11/' + token_id_getter_re.exec(gif.gifLink)[1], '_blank').focus();
+        }}>⛵️</button>
+              
           </div>
+          
+
         ))}
     </div>
   </div>
